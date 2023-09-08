@@ -1,4 +1,5 @@
 from datetime import date
+from django.http import Http404
 from django.shortcuts import render
 
 all_posts = [
@@ -83,7 +84,10 @@ def posts(request):
     })
 
 def post_detail(request, slug):
-    this_post = next(post for post in all_posts if post['slug'] == slug)
+    this_post = [post for post in all_posts if post['slug'] == slug]
     return render(request, "blog/post-detail.html", {
-        "post": this_post
+        "post": this_post[0]
     })
+
+def page404(Request):
+    raise Http404()
