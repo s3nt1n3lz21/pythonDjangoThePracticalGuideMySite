@@ -33,7 +33,7 @@ class Post(models.Model):
         return reverse("post-detail", args=[self.slug])
 
     def __str__(self):
-        return f"{self.title} {self.date}"
+        return f"{self.title}"
 
 class Comment(models.Model):
     user_name = models.CharField(max_length=120)
